@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Лаб1")]
+[assembly: AssemblyTitle("WindowsFormsCrane")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Лаб1")]
+[assembly: AssemblyProduct("WindowsFormsCrane")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("4db429ad-01b8-4c13-97e5-4a11aedabfcd")]
+[assembly: Guid("eda6ed63-bd71-4383-a1b1-4c3a59c5f09e")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

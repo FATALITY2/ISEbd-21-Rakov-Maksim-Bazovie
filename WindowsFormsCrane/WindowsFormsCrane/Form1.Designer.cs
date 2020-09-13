@@ -1,4 +1,4 @@
-﻿namespace Лаб1
+﻿namespace WindowsFormsCrane
 {
     partial class Form1
     {

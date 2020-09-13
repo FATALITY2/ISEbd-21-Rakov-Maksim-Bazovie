@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Лаб1.Properties
+namespace WindowsFormsCrane.Properties
 {
 
 

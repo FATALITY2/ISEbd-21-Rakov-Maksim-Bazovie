@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Лаб1
+namespace WindowsFormsCrane
 {
-    public partial class fasdfForm1 : Form
+    public partial class Form1 : Form
     {
         public Form1()
         {

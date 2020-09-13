@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Лаб1
+namespace WindowsFormsCrane
 {
     static class Program
     {
