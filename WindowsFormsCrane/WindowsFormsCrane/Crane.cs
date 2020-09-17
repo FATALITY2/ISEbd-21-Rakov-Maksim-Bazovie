@@ -87,21 +87,23 @@ namespace WindowsFormsCrane
         /// Изменение направления пермещения
         public void MoveTransport(Direction direction)
         {
-            int boarderTop = 43;
-            int boarderLeft = 0;
+            const int boarderTop = 43;
+            const int boarderLeft = -40;
+            const int boarderRight = 73;
+            const int boarderDown = 20;
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
             {
                 // вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - carWidth - 73)
+                    if (_startPosX + step < _pictureWidth - carWidth - boarderRight)
                     {
                         _startPosX += step;
                     }
                     break;
                 //влево
                 case Direction.Left:
-                    if (_startPosX - step > boarderLeft - 40)
+                    if (_startPosX - step > boarderLeft)
                     {
                         _startPosX -= step;
                     }
@@ -115,7 +117,7 @@ namespace WindowsFormsCrane
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - carHeight - 20)
+                    if (_startPosY + step < _pictureHeight - carHeight - boarderDown)
                     {
                         _startPosY += step;
                     }

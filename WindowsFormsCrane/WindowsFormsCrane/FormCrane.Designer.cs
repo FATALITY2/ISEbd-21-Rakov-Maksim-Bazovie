@@ -41,7 +41,7 @@
             // 
             this.pictureBoxCrane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxCrane.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxCrane.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxCrane.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxCrane.Name = "pictureBoxCrane";
             this.pictureBoxCrane.Size = new System.Drawing.Size(662, 368);
             this.pictureBoxCrane.TabIndex = 0;
@@ -50,7 +50,7 @@
             // buttonCreate
             // 
             this.buttonCreate.Location = new System.Drawing.Point(6, 6);
-            this.buttonCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCreate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(81, 32);
             this.buttonCreate.TabIndex = 1;
@@ -63,8 +63,8 @@
             this.buttonUp.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.buttonUp.BackgroundImage = global::WindowsFormsCrane.Properties.Resources.Up;
             this.buttonUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonUp.Location = new System.Drawing.Point(592, 276);
-            this.buttonUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonUp.Location = new System.Drawing.Point(614, 305);
+            this.buttonUp.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(22, 24);
             this.buttonUp.TabIndex = 2;
@@ -76,8 +76,8 @@
             this.buttonDown.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonDown.BackgroundImage = global::WindowsFormsCrane.Properties.Resources.Down;
             this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonDown.Location = new System.Drawing.Point(592, 296);
-            this.buttonDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonDown.Location = new System.Drawing.Point(614, 333);
+            this.buttonDown.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(22, 24);
             this.buttonDown.TabIndex = 3;
@@ -89,8 +89,8 @@
             this.buttonRight.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.buttonRight.BackgroundImage = global::WindowsFormsCrane.Properties.Resources.Right;
             this.buttonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonRight.Location = new System.Drawing.Point(613, 296);
-            this.buttonRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRight.Location = new System.Drawing.Point(640, 333);
+            this.buttonRight.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRight.Name = "buttonRight";
             this.buttonRight.Size = new System.Drawing.Size(22, 24);
             this.buttonRight.TabIndex = 4;
@@ -102,8 +102,8 @@
             this.buttonLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonLeft.BackgroundImage = global::WindowsFormsCrane.Properties.Resources.Left;
             this.buttonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonLeft.Location = new System.Drawing.Point(572, 296);
-            this.buttonLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonLeft.Location = new System.Drawing.Point(588, 333);
+            this.buttonLeft.Margin = new System.Windows.Forms.Padding(2);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(22, 24);
             this.buttonLeft.TabIndex = 5;
@@ -121,7 +121,7 @@
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.pictureBoxCrane);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCrane";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Подъемный кран";

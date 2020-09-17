@@ -35,7 +35,7 @@ namespace WindowsFormsCrane
                 Random rnd = new Random();
                 crane = new Crane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray,
                Color.LightBlue, Color.White, true, true, true, true);
-            crane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxCrane.Width,
+            crane.SetPosition(rnd.Next(10, 100), rnd.Next(50, 100), pictureBoxCrane.Width,
                pictureBoxCrane.Height);
                 Draw();
             }
