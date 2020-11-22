@@ -7,21 +7,14 @@ namespace WindowsFormsCrane
     public class Crane : Vehicle
     {
         /// <summary>
-        /// Левая координата отрисовки крана
-        /// </summary>
-
-        /// <summary>
         /// Ширина отрисовки крана
         /// </summary>
-
         private readonly int carWidth = 100;
         /// <summary>
         /// Высота отрисовки крана
         /// </summary>
         private readonly int carHeight = 60;
-        /// <summary>
-        /// Максимальная скорость
-        /// </summary>
+       
         public Crane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
@@ -100,13 +93,12 @@ namespace WindowsFormsCrane
 
 
             //гусеница
-
-            g.DrawEllipse(pen, _startPosX + 61, _startPosY + 66, 90, 20);
-            g.DrawEllipse(pen, _startPosX + 127, _startPosY + 68, 15, 15);
-            g.DrawEllipse(pen, _startPosX + 66, _startPosY + 69, 62, 14);
+            g.DrawEllipse(pen, _startPosX + 61, _startPosY + 61, 90, 20);
+            g.DrawEllipse(pen, _startPosX + 127, _startPosY + 63, 15, 15);
+            g.DrawEllipse(pen, _startPosX + 66, _startPosY + 64, 62, 14);
             Brush caterpillar = new SolidBrush(MainColor);
-            g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 68, 15, 15);
-            g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 69, 63, 15);
+            g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 63, 15, 15);
+            g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 64, 63, 15);
         }
     }
 }

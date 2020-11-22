@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsCrane
 {
-    public abstract class Vehicle : ISuperCrane
+    public abstract class Vehicle : ITransport
     {
         protected float _startPosX;
         protected float _startPosY;

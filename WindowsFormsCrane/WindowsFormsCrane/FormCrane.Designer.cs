@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.pictureBoxCrane = new System.Windows.Forms.PictureBox();
-            this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
-            this.buttonCreateSuperCrane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCrane)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,17 +45,6 @@
             this.pictureBoxCrane.Size = new System.Drawing.Size(662, 368);
             this.pictureBoxCrane.TabIndex = 0;
             this.pictureBoxCrane.TabStop = false;
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(6, 6);
-            this.buttonCreate.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(93, 32);
-            this.buttonCreate.TabIndex = 1;
-            this.buttonCreate.Text = "Создать";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // buttonUp
             // 
@@ -111,27 +98,15 @@
             this.buttonLeft.UseVisualStyleBackColor = true;
             this.buttonLeft.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // buttonCreateSuperCrane
-            // 
-            this.buttonCreateSuperCrane.Location = new System.Drawing.Point(114, 6);
-            this.buttonCreateSuperCrane.Name = "buttonCreateSuperCrane";
-            this.buttonCreateSuperCrane.Size = new System.Drawing.Size(144, 32);
-            this.buttonCreateSuperCrane.TabIndex = 6;
-            this.buttonCreateSuperCrane.Text = "Создать суперкран";
-            this.buttonCreateSuperCrane.UseVisualStyleBackColor = true;
-            this.buttonCreateSuperCrane.Click += new System.EventHandler(this.buttonCreateSuperCrane_click);
-            // 
             // FormCrane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 368);
-            this.Controls.Add(this.buttonCreateSuperCrane);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
-            this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.pictureBoxCrane);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCrane";
@@ -145,12 +120,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxCrane;
-        private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonLeft;
-        private System.Windows.Forms.Button buttonCreateSuperCrane;
     }
 }
 

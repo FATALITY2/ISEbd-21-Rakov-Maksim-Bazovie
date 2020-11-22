@@ -17,22 +17,10 @@ namespace WindowsFormsCrane
         /// Ширина отрисовки самолета
         /// </summary>
         protected const int carHeight = 60;
-        /// <summary>
-        /// Конструктор
-        /// </summary>
+       
         public Color DopColor { private set; get; }
-
-        /// <summary>
-        /// Признак наличия противовеса
-        /// </summary>
-        public bool Counterweight { private set; get; }
-        /// <summary>
-        /// Признак наличия гусениц
-        /// </summary>
-
-        /// <summary>
-        /// Признак наличия подъемного устройства
-        /// </summary>
+ 
+        public bool Counterweight { private set; get; }    
         public bool LiftingDevice { private set; get; }
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес самолета</param>
