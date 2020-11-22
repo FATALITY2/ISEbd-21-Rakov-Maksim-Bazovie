@@ -17,9 +17,8 @@ namespace WindowsFormsCrane
         {
             InitializeComponent();
             parkingCollection = new ParkingCollection(pictureBoxParking.Width, pictureBoxParking.Height);
-            Draw();
-        }
 
+        }
         private void ReloadLevels()
         {
             int index = listBoxParking.SelectedIndex;
@@ -75,51 +74,6 @@ namespace WindowsFormsCrane
             }
         }
 
-        private void buttonSetCrane_Click(object sender, EventArgs e)
-        {
-            if (listBoxParking.SelectedIndex > -1)
-            {
-
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var crane = new Crane(100, 1000, dialog.Color);
-                    if (parkingCollection[listBoxParking.SelectedItem.ToString()] + crane)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
-        }
-
-        private void buttonSetSuperCrane_Click(object sender, EventArgs e)
-        {
-            if (listBoxParking.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var crane = new SuperCrane(100, 1000, dialog.Color, dialogDop.Color, true, true);
-                        if (parkingCollection[listBoxParking.SelectedItem.ToString()] + crane)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-        }
-
         private void buttonTakeCar_Click(object sender, EventArgs e)
         {
             if (listBoxParking.SelectedIndex > -1 && maskedTextBoxNumber.Text != "")
@@ -135,9 +89,31 @@ namespace WindowsFormsCrane
                 Draw();
             }
         }
+
         private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+        private void buttonSetCrane_Click(object sender, EventArgs e)
+        {
+            var formCraneConfig = new FormCraneConfig();
+            formCraneConfig.AddEvent(AddCrane);
+            formCraneConfig.Show();
+        }
+
+        private void AddCrane(Vehicle crane)
+        {
+            if (crane != null && listBoxParking.SelectedIndex > -1)
+            {
+                if ((parkingCollection[listBoxParking.SelectedItem.ToString()]) + crane)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Кран не удалось поставить");
+                }
+            }
         }
     }
 }

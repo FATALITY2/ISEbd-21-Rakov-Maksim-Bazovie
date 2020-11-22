@@ -8,6 +8,7 @@ namespace WindowsFormsCrane
 {
     static class Program
     {
+        public delegate void CraneDelegate(Vehicle crane);
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

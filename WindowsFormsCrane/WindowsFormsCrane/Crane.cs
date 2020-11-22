@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+﻿ using System.Drawing;
 
 
 namespace WindowsFormsCrane
 {
 
     public class Crane : Vehicle
-    {     
+    {
         /// <summary>
         /// Ширина отрисовки крана
         /// </summary>
@@ -14,13 +14,14 @@ namespace WindowsFormsCrane
         /// Высота отрисовки крана
         /// </summary>
         private readonly int carHeight = 60;
-        
+
         public Crane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
         }
+
         protected Crane(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
         {
             MaxSpeed = maxSpeed;
@@ -28,7 +29,6 @@ namespace WindowsFormsCrane
             MainColor = mainColor;
             this.carWidth = carWidth;
             this.carHeight = carHeight;
-
         }
 
         /// Изменение направления пермещения

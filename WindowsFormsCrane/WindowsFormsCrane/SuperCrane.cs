@@ -81,5 +81,9 @@ namespace WindowsFormsCrane
                 g.DrawLine(pen, _startPosX + 72, _startPosY - 15, _startPosX + 53, _startPosY - 45);
             }
         }
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }

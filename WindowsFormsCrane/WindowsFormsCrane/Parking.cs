@@ -9,7 +9,6 @@ namespace WindowsFormsCrane
 {
     public class Parking<T> where T : class, ITransport
     {
-
         private readonly List<T> _places;
         private readonly int _maxCount;
         private readonly int pictureWidth;
@@ -54,7 +53,7 @@ namespace WindowsFormsCrane
             DrawMarking(g);
             for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i].SetPosition(5 + i / 2 * _placeSizeWidth - 25, i % 2 * _placeSizeHeight + 60, pictureWidth, pictureHeight);
+                _places[i].SetPosition(5 + i / 2 * _placeSizeWidth - 15, i % 2 * _placeSizeHeight + 60, pictureWidth, pictureHeight);
                 _places[i].DrawTransport(g);
             }
         }

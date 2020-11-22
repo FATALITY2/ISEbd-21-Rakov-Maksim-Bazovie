@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonSetCrane = new System.Windows.Forms.Button();
-            this.buttonSetSuperCrane = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.maskedTextBoxNumber = new System.Windows.Forms.MaskedTextBox();
@@ -47,7 +46,7 @@
             // 
             // buttonSetCrane
             // 
-            this.buttonSetCrane.Location = new System.Drawing.Point(655, 215);
+            this.buttonSetCrane.Location = new System.Drawing.Point(655, 249);
             this.buttonSetCrane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSetCrane.Name = "buttonSetCrane";
             this.buttonSetCrane.Size = new System.Drawing.Size(139, 48);
@@ -55,17 +54,6 @@
             this.buttonSetCrane.Text = "Припарковать кран";
             this.buttonSetCrane.UseVisualStyleBackColor = true;
             this.buttonSetCrane.Click += new System.EventHandler(this.buttonSetCrane_Click);
-            // 
-            // buttonSetSuperCrane
-            // 
-            this.buttonSetSuperCrane.Location = new System.Drawing.Point(655, 268);
-            this.buttonSetSuperCrane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonSetSuperCrane.Name = "buttonSetSuperCrane";
-            this.buttonSetSuperCrane.Size = new System.Drawing.Size(139, 52);
-            this.buttonSetSuperCrane.TabIndex = 2;
-            this.buttonSetSuperCrane.Text = "Припарковать Суперкран";
-            this.buttonSetSuperCrane.UseVisualStyleBackColor = true;
-            this.buttonSetSuperCrane.Click += new System.EventHandler(this.buttonSetSuperCrane_Click);
             // 
             // groupBox1
             // 
@@ -123,7 +111,7 @@
             this.pictureBoxParking.Location = new System.Drawing.Point(1, 2);
             this.pictureBoxParking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxParking.Name = "pictureBoxParking";
-            this.pictureBoxParking.Size = new System.Drawing.Size(716, 444);
+            this.pictureBoxParking.Size = new System.Drawing.Size(714, 444);
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
             // 
@@ -150,7 +138,7 @@
             // 
             this.AddParking.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddParking.Location = new System.Drawing.Point(659, 55);
-            this.AddParking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddParking.Margin = new System.Windows.Forms.Padding(4);
             this.AddParking.Name = "AddParking";
             this.AddParking.Size = new System.Drawing.Size(129, 32);
             this.AddParking.TabIndex = 6;
@@ -162,7 +150,7 @@
             // 
             this.DelParking.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DelParking.Location = new System.Drawing.Point(656, 181);
-            this.DelParking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DelParking.Margin = new System.Windows.Forms.Padding(4);
             this.DelParking.Name = "DelParking";
             this.DelParking.Size = new System.Drawing.Size(129, 28);
             this.DelParking.TabIndex = 7;
@@ -191,7 +179,6 @@
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.listBoxParking);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.buttonSetSuperCrane);
             this.Controls.Add(this.buttonSetCrane);
             this.Controls.Add(this.pictureBoxParking);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -209,7 +196,6 @@
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
         private System.Windows.Forms.Button buttonSetCrane;
-        private System.Windows.Forms.Button buttonSetSuperCrane;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonTakeCar;
         private System.Windows.Forms.Label label1;
