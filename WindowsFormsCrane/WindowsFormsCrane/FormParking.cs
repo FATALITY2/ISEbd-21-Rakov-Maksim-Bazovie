@@ -19,6 +19,7 @@ namespace WindowsFormsCrane
             parkingCollection = new ParkingCollection(pictureBoxParking.Width, pictureBoxParking.Height);
             Draw();
         }
+
         private void ReloadLevels()
         {
             int index = listBoxParking.SelectedIndex;
@@ -47,7 +48,6 @@ namespace WindowsFormsCrane
                 Graphics gr = Graphics.FromImage(bmp);
                 parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
                 pictureBoxParking.Image = bmp;
-
             }
         }
 
@@ -134,7 +134,7 @@ namespace WindowsFormsCrane
                 }
                 Draw();
             }
-        }
+        }
         private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
