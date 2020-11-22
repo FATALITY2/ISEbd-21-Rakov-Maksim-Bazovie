@@ -54,8 +54,12 @@
     <Compile Include="FormCrane.Designer.cs">
       <DependentUpon>FormCrane.cs</DependentUpon>
     </Compile>
+    <Compile Include="ISuperCrane.cs" />
+    <Compile Include="ITransport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuperCrane.cs" />
+    <Compile Include="Vehicle.cs" />
     <EmbeddedResource Include="FormCrane.resx">
       <DependentUpon>FormCrane.cs</DependentUpon>
     </EmbeddedResource>
