@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+﻿ using System.Drawing;
 
 
 namespace WindowsFormsCrane
 {
 
     public class Crane : Vehicle
-    {
+    {     
         /// <summary>
         /// Ширина отрисовки крана
         /// </summary>
@@ -14,15 +14,12 @@ namespace WindowsFormsCrane
         /// Высота отрисовки крана
         /// </summary>
         private readonly int carHeight = 60;
-       
+        
         public Crane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
-
             Weight = weight;
             MainColor = mainColor;
-
-
         }
         protected Crane(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
         {
@@ -82,7 +79,6 @@ namespace WindowsFormsCrane
         {
             Pen pen = new Pen(Color.Black);
 
-
             //рисую главную часть крана
             g.DrawRectangle(pen, _startPosX + 54, _startPosY + 20, 25, 40);
             g.DrawRectangle(pen, _startPosX + 80, _startPosY + 30, 80, 30);
@@ -91,14 +87,13 @@ namespace WindowsFormsCrane
             g.FillRectangle(mainPart, _startPosX + 80, _startPosY + 31, 80, 29);
             g.FillRectangle(mainPart, _startPosX + 141, _startPosY + 20, 12, 5);
 
-
             //гусеница
-            g.DrawEllipse(pen, _startPosX + 61, _startPosY + 61, 90, 20);
-            g.DrawEllipse(pen, _startPosX + 127, _startPosY + 63, 15, 15);
-            g.DrawEllipse(pen, _startPosX + 66, _startPosY + 64, 62, 14);
+            g.DrawEllipse(pen, _startPosX + 61, _startPosY + 66, 90, 20);
+            g.DrawEllipse(pen, _startPosX + 127, _startPosY + 68, 15, 15);
+            g.DrawEllipse(pen, _startPosX + 66, _startPosY + 69, 62, 14);
             Brush caterpillar = new SolidBrush(MainColor);
-            g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 63, 15, 15);
-            g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 64, 63, 15);
+            g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 68, 15, 15);
+            g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 69, 63, 15);
         }
     }
 }

@@ -29,7 +29,6 @@ namespace WindowsFormsCrane
             crane.DrawTransport(gr);
             pictureBoxCrane.Image = bmp;
         }
-
         /// <summary>
         /// Обработка нажатия кнопок управления
         /// </summary>

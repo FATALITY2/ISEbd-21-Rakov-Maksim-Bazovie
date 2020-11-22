@@ -12,49 +12,81 @@ namespace WindowsFormsCrane
 {
     public partial class FormParking : Form
     {
-        private readonly Parking<Crane> parking;
+        private readonly ParkingCollection parkingCollection;
         public FormParking()
         {
             InitializeComponent();
-            parking = new Parking<Crane>(pictureBoxParking.Width, pictureBoxParking.Height);
+            parkingCollection = new ParkingCollection(pictureBoxParking.Width, pictureBoxParking.Height);
             Draw();
+        }
+        private void ReloadLevels()
+        {
+            int index = listBoxParking.SelectedIndex;
+
+            listBoxParking.Items.Clear();
+            for (int i = 0; i < parkingCollection.Keys.Count; i++)
+            {
+                listBoxParking.Items.Add(parkingCollection.Keys[i]);
+            }
+
+            if (listBoxParking.Items.Count > 0 && (index == -1 || index >= listBoxParking.Items.Count))
+            {
+                listBoxParking.SelectedIndex = 0;
+            }
+            else if (listBoxParking.Items.Count > 0 && index > -1 && index < listBoxParking.Items.Count)
+            {
+                listBoxParking.SelectedIndex = index;
+            }
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            parking.Draw(gr);
-            pictureBoxParking.Image = bmp;
+            if (listBoxParking.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
+                pictureBoxParking.Image = bmp;
+
+            }
         }
 
-        private void buttonSetCrane_Click(object sender, EventArgs e)
+
+        private void buttonAddParking_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
-                var crane = new Crane(100, 1000, dialog.Color);
-                if (parking + crane)
+                MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            parkingCollection.AddParking(textBoxNewLevelName.Text);
+            ReloadLevels();
+            textBoxNewLevelName.Text = "";
+        }
+
+        private void buttonDelParking_Click(object sender, EventArgs e)
+        {
+            if (listBoxParking.SelectedIndex > -1)
+            {
+                if (MessageBox.Show($"Удалить парковку { listBoxParking.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Draw();
-                }
-                else
-                {
-                    MessageBox.Show("Парковка переполнена");
+                    parkingCollection.DelParking(listBoxParking.SelectedItem.ToString());
+                    ReloadLevels();
                 }
             }
         }
 
-        private void buttonSetSuperCrane_Click(object sender, EventArgs e)
+        private void buttonSetCrane_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxParking.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
+
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    var superCrane = new SuperCrane(100, 1000, dialog.Color, dialog.Color, true, true);
-                    if (parking + superCrane)
+                    var crane = new Crane(100, 1000, dialog.Color);
+                    if (parkingCollection[listBoxParking.SelectedItem.ToString()] + crane)
                     {
                         Draw();
                     }
@@ -66,21 +98,47 @@ namespace WindowsFormsCrane
             }
         }
 
+        private void buttonSetSuperCrane_Click(object sender, EventArgs e)
+        {
+            if (listBoxParking.SelectedIndex > -1)
+            {
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
+                    {
+                        var crane = new SuperCrane(100, 1000, dialog.Color, dialogDop.Color, true, true);
+                        if (parkingCollection[listBoxParking.SelectedItem.ToString()] + crane)
+                        {
+                            Draw();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Парковка переполнена");
+                        }
+                    }
+                }
+            }
+        }
         private void buttonTakeCar_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxNumber.Text != "")
+            if (listBoxParking.SelectedIndex > -1 && maskedTextBoxNumber.Text != "")
             {
-                var crane = parking - Convert.ToInt32(maskedTextBoxNumber.Text);
-                if (crane != null)
+                var car = parkingCollection[listBoxParking.SelectedItem.ToString()] -
+               Convert.ToInt32(maskedTextBoxNumber.Text);
+                if (car != null)
                 {
                     FormCrane form = new FormCrane();
-                    form.SetCrane(crane);
+                    form.SetCrane(car);
                     form.ShowDialog();
                 }
                 Draw();
             }
+        }
+        private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Draw();
         }
-
-       
     }
 }
