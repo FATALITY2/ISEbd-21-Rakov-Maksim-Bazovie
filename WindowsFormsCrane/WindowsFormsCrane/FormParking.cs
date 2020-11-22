@@ -51,7 +51,6 @@ namespace WindowsFormsCrane
             }
         }
 
-
         private void buttonAddParking_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
@@ -59,7 +58,6 @@ namespace WindowsFormsCrane
                 MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             parkingCollection.AddParking(textBoxNewLevelName.Text);
             ReloadLevels();
             textBoxNewLevelName.Text = "";
@@ -121,6 +119,7 @@ namespace WindowsFormsCrane
                 }
             }
         }
+
         private void buttonTakeCar_Click(object sender, EventArgs e)
         {
             if (listBoxParking.SelectedIndex > -1 && maskedTextBoxNumber.Text != "")
