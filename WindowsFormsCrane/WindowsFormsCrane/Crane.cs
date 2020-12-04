@@ -1,11 +1,16 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
 
 
 namespace WindowsFormsCrane
 {
-
+    
     public class Crane : Vehicle
-    {
+    {     
         /// <summary>
         /// Ширина отрисовки крана
         /// </summary>
@@ -15,11 +20,24 @@ namespace WindowsFormsCrane
         /// </summary>
         private readonly int carHeight = 60;
 
+        protected readonly char separator = ';';
+
         public Crane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
-            MainColor = mainColor;
+            MainColor = mainColor;                 
+        }
+
+        public Crane(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
         }
 
         protected Crane(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
@@ -29,6 +47,7 @@ namespace WindowsFormsCrane
             MainColor = mainColor;
             this.carWidth = carWidth;
             this.carHeight = carHeight;
+
         }
 
         /// Изменение направления пермещения
@@ -86,7 +105,7 @@ namespace WindowsFormsCrane
             g.FillRectangle(mainPart, _startPosX + 55, _startPosY + 21, 24, 38);
             g.FillRectangle(mainPart, _startPosX + 80, _startPosY + 31, 80, 29);
             g.FillRectangle(mainPart, _startPosX + 141, _startPosY + 20, 12, 5);
-
+            
             //гусеница
             g.DrawEllipse(pen, _startPosX + 61, _startPosY + 66, 90, 20);
             g.DrawEllipse(pen, _startPosX + 127, _startPosY + 68, 15, 15);
@@ -94,6 +113,10 @@ namespace WindowsFormsCrane
             Brush caterpillar = new SolidBrush(MainColor);
             g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 68, 15, 15);
             g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 69, 63, 15);
+        }
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

@@ -9,6 +9,7 @@ namespace WindowsFormsCrane
 {
     public class Parking<T> where T : class, ITransport
     {
+
         private readonly List<T> _places;
         private readonly int _maxCount;
         private readonly int pictureWidth;
@@ -69,6 +70,14 @@ namespace WindowsFormsCrane
                 }
                 g.DrawLine(pen, i * _placeSizeWidth + 5, 0, i * _placeSizeWidth + 5, (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
+        }
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
         }
     }
 }

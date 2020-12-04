@@ -22,7 +22,7 @@ namespace WindowsFormsCrane
         /// <summary>
         /// Признак наличия противовеса
         /// </summary>
-        public bool Counterweight { private set; get; }
+        public bool CounterWeight { private set; get; }
         /// <summary>
         /// Признак наличия подъемного устройства
         /// </summary>
@@ -35,9 +35,23 @@ namespace WindowsFormsCrane
         {
             DopColor = dopColor;
 
-            Counterweight = counterweight;
+            CounterWeight = counterweight;
 
             LiftingDevice = liftingDevice;
+        }
+
+        public SuperCrane(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                CounterWeight = Convert.ToBoolean(strs[4]);
+                LiftingDevice = Convert.ToBoolean(strs[5]);               
+            }
         }
 
         public override void DrawTransport(Graphics g)
@@ -46,7 +60,7 @@ namespace WindowsFormsCrane
             Brush dopBrush = new SolidBrush(DopColor);
             base.DrawTransport(g);
 
-            if (Counterweight)
+            if (CounterWeight)
             {
                 g.DrawRectangle(pen, _startPosX + 160, _startPosY + 20, 22, 44);
                 g.DrawLine(pen, _startPosX + 125, _startPosY + 30, _startPosX + 162, _startPosY - 10);
@@ -84,6 +98,10 @@ namespace WindowsFormsCrane
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}{separator}{DopColor.Name}{separator}{CounterWeight}{separator}{LiftingDevice}";
         }
     }
 }

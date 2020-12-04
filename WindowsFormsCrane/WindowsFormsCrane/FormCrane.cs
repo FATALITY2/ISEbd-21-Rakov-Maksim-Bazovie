@@ -56,4 +56,4 @@ namespace WindowsFormsCrane
             Draw();
         }
     }
-}
+}
