@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace WindowsFormsCrane
 {
@@ -30,7 +30,7 @@ namespace WindowsFormsCrane
         {
             if (p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new ParkingOverflowException();
             }
             p._places.Add(crane);
 
@@ -40,7 +40,7 @@ namespace WindowsFormsCrane
         {
             if (index < -1 || index > p._places.Count)
             {
-                return null;
+                throw new CraneNotFoundException(index);
             }
             T crane = p._places[index];
 
@@ -79,5 +79,6 @@ namespace WindowsFormsCrane
             }
             return _places[index];
         }
+
     }
 }

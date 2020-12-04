@@ -7,16 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 
 namespace WindowsFormsCrane
 {
     public partial class FormParking : Form
     {
         private readonly ParkingCollection parkingCollection;
+
+        private readonly Logger logger;
         public FormParking()
         {
             InitializeComponent();
             parkingCollection = new ParkingCollection(pictureBoxParking.Width, pictureBoxParking.Height);
+            logger = LogManager.GetCurrentClassLogger();
 
         }
         private void ReloadLevels()
@@ -47,6 +51,7 @@ namespace WindowsFormsCrane
                 Graphics gr = Graphics.FromImage(bmp);
                 parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
                 pictureBoxParking.Image = bmp;
+
             }
         }
 
@@ -56,9 +61,11 @@ namespace WindowsFormsCrane
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
                 MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn("Не введено название аэродрома");
                 return;
             }
 
+            logger.Info($"Добавили парковку {textBoxNewLevelName.Text}");
             parkingCollection.AddParking(textBoxNewLevelName.Text);
             ReloadLevels();
             textBoxNewLevelName.Text = "";
@@ -70,6 +77,7 @@ namespace WindowsFormsCrane
             {
                 if (MessageBox.Show($"Удалить парковку { listBoxParking.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили парковку {listBoxParking.SelectedItem.ToString()}");
                     parkingCollection.DelParking(listBoxParking.SelectedItem.ToString());
                     ReloadLevels();
                 }
@@ -82,20 +90,38 @@ namespace WindowsFormsCrane
         {
             if (listBoxParking.SelectedIndex > -1 && maskedTextBoxNumber.Text != "")
             {
-                var car = parkingCollection[listBoxParking.SelectedItem.ToString()] -
-               Convert.ToInt32(maskedTextBoxNumber.Text);
-                if (car != null)
+                try
                 {
-                    FormCrane form = new FormCrane();
-                    form.SetCrane(car);
-                    form.ShowDialog();
+                    var crane = parkingCollection[listBoxParking.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxNumber.Text);
+                    if (crane != null)
+                    {
+                        FormCrane form = new FormCrane();
+                        form.SetCrane(crane);
+                        form.ShowDialog();
+
+                        logger.Info($"Изъят кран {crane} с места {maskedTextBoxNumber.Text}");
+                    }
+                    Draw();
                 }
-                Draw();
+
+                catch (CraneNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Не найдено");
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка");
+                }
             }
+
         }
 
         private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на парковку {listBoxParking.SelectedItem.ToString()}");
             Draw();
         }
         private void buttonSetCrane_Click(object sender, EventArgs e)
@@ -109,28 +135,47 @@ namespace WindowsFormsCrane
         {
             if (crane != null && listBoxParking.SelectedIndex > -1)
             {
-                if ((parkingCollection[listBoxParking.SelectedItem.ToString()]) + crane)
+                try
                 {
+                    if ((parkingCollection[listBoxParking.SelectedItem.ToString()]) +
+                   crane)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен кран {crane}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Кран не удалось поставить");
+                    }
                     Draw();
                 }
-                else
+                catch (ParkingOverflowException ex)
                 {
-                    MessageBox.Show("Кран не удалось поставить");
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (parkingCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    parkingCollection.SaveData(saveFileDialog.FileName);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -139,15 +184,19 @@ namespace WindowsFormsCrane
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (parkingCollection.LoadData(openFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    parkingCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                     ReloadLevels();
                     Draw();
-                }
-                else
+                }              
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

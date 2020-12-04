@@ -30,6 +30,13 @@ namespace WindowsFormsCrane
             pictureBoxCrane.Image = bmp;
         }
         /// <summary>
+        /// Обработка нажатия кнопки "Создать"
+        /// </summary>
+
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+      
+        /// <summary>
         /// Обработка нажатия кнопок управления
         /// </summary>
         /// <param name="sender"></param>
@@ -55,5 +62,7 @@ namespace WindowsFormsCrane
             }
             Draw();
         }
+
+       
     }
-}
+}
