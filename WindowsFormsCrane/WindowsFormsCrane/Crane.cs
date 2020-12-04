@@ -29,7 +29,6 @@ namespace WindowsFormsCrane
             MainColor = mainColor;                 
         }
 
-
         public Crane(string info)
         {
             string[] strs = info.Split(separator);

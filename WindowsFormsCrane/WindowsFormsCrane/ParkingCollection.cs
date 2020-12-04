@@ -10,17 +10,31 @@ namespace WindowsFormsCrane
 {
     public class ParkingCollection
     {
-
+        /// <summary>
+        /// Словарь (хранилище) с парковками
+        /// </summary>
         readonly Dictionary<string, Parking<Vehicle>> parkingStages;
-
+        /// <summary>
+        /// Возвращение списка названий парковок
+        /// </summary>
         public List<string> Keys => parkingStages.Keys.ToList();
-
+        /// <summary>
+        /// Ширина окна отрисовки
+        /// </summary>
         private readonly int pictureWidth;
-
+        /// <summary>
+        /// Высота окна отрисовки
+        /// </summary>
         private readonly int pictureHeight;
-
+        /// <summary>
+        /// Разделитель для записи информации в файл
+        /// </summary>
         private readonly char separator = ':';
-
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="pictureWidth"></param>
+        /// <param name="pictureHeight"></param>
         public ParkingCollection(int pictureWidth, int pictureHeight)
         {
             parkingStages = new Dictionary<string, Parking<Vehicle>>();
@@ -59,6 +73,15 @@ namespace WindowsFormsCrane
                     return null;
                 }
             }
+        }
+        /// Метод записи информации в файл
+        /// </summary>
+        /// <param name="text">Строка, которую следует записать</param>
+        /// <param name="stream">Поток для записи</param>
+        private void WriteToFile(string text, FileStream stream)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(text);
+            stream.Write(info, 0, info.Length);
         }
 
         public bool SaveData(string filename)

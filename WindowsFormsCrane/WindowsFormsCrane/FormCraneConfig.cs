@@ -23,9 +23,9 @@ namespace WindowsFormsCrane
             panelRed.MouseDown += panelColor_MouseDown;
             panelYellow.MouseDown += panelColor_MouseDown;
             panelBlack.MouseDown += panelColor_MouseDown;
-            panelWhite.MouseDown +=panelColor_MouseDown;
+            panelWhite.MouseDown += panelColor_MouseDown;
             panelGray.MouseDown += panelColor_MouseDown;
-            panelOrange.MouseDown +=panelColor_MouseDown;
+            panelOrange.MouseDown += panelColor_MouseDown;
             panelGreen.MouseDown += panelColor_MouseDown;
             panelBlue.MouseDown += panelColor_MouseDown;
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };

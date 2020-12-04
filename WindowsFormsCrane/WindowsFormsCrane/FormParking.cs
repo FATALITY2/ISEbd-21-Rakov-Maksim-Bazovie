@@ -61,7 +61,7 @@ namespace WindowsFormsCrane
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
                 MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Warn("Не введено название аэродрома");
+                logger.Warn("Не введено название парковки");
                 return;
             }
 
