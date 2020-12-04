@@ -17,6 +17,7 @@ namespace WindowsFormsCrane
         /// Ширина отрисовки самолета
         /// </summary>
         protected const int carHeight = 60;
+
         public Color DopColor { private set; get; }
         /// <summary>
         /// Признак наличия противовеса

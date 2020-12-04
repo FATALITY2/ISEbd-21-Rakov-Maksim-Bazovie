@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using NLog;
 
 
 namespace WindowsFormsCrane
@@ -29,6 +28,7 @@ namespace WindowsFormsCrane
             Weight = weight;
             MainColor = mainColor;                 
         }
+
 
         public Crane(string info)
         {

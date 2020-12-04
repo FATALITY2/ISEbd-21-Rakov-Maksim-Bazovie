@@ -28,14 +28,7 @@ namespace WindowsFormsCrane
             Graphics gr = Graphics.FromImage(bmp);
             crane.DrawTransport(gr);
             pictureBoxCrane.Image = bmp;
-        }
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать"
-        /// </summary>
-
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-      
+        }  
         /// <summary>
         /// Обработка нажатия кнопок управления
         /// </summary>
@@ -61,8 +54,6 @@ namespace WindowsFormsCrane
                     break;
             }
             Draw();
-        }
-
-       
+        }       
     }
 }
