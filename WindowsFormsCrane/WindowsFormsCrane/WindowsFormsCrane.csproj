@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crane.cs" />
+    <Compile Include="CraneComparer.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="FormCraneConfig.cs">
       <SubType>Form</SubType>
@@ -77,6 +78,7 @@
     <Compile Include="ISuperCrane.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="Parking.cs" />
+    <Compile Include="ParkingAlreadyHaveException.cs" />
     <Compile Include="ParkingCollection.cs" />
     <Compile Include="CraneNotFoundException.cs" />
     <Compile Include="ParkingOverflowException.cs" />

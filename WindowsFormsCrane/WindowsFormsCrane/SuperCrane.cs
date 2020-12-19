@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsCrane
 {
-    public class SuperCrane : Crane
+    public class SuperCrane : Crane, IEquatable<SuperCrane>
     {
         /// <summary>
         /// Ширина отрисовки самолета
@@ -102,6 +102,62 @@ namespace WindowsFormsCrane
         public override string ToString()
         {
             return $"{base.ToString()}{separator}{DopColor.Name}{separator}{CounterWeight}{separator}{LiftingDevice}";
+        }
+        public bool Equals(SuperCrane other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (LiftingDevice != other.LiftingDevice)
+            {
+                return false;
+            }
+            if (CounterWeight != other.CounterWeight)
+            {
+                return false;
+            }         
+            return true;
+
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is SuperCrane craneObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(craneObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

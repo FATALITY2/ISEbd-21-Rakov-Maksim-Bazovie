@@ -8,8 +8,8 @@ using System.Drawing;
 
 namespace WindowsFormsCrane
 {
-    
-    public class Crane : Vehicle
+
+    public class Crane : Vehicle, IEquatable<Crane>
     {     
         /// <summary>
         /// Ширина отрисовки крана
@@ -117,6 +117,50 @@ namespace WindowsFormsCrane
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+        public bool Equals(Crane other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Crane craneObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(craneObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

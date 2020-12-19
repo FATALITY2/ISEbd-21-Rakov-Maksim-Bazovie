@@ -74,17 +74,8 @@ namespace WindowsFormsCrane
                 }
             }
         }
-        /// Метод записи информации в файл
-        /// </summary>
-        /// <param name="text">Строка, которую следует записать</param>
-        /// <param name="stream">Поток для записи</param>
-        private void WriteToFile(string text, FileStream stream)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(text);
-            stream.Write(info, 0, info.Length);
-        }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -92,95 +83,75 @@ namespace WindowsFormsCrane
             }
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                using (StreamWriter sw = new StreamWriter(fs))
+                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.WriteLine($"ParkingCollection");
-
                     foreach (var level in parkingStages)
                     {
-                        sw.WriteLine($"Parking{separator}{level.Key}");
-
-                        ITransport crane = null;
-
-                        for (int i = 0; (crane = level.Value.GetNext(i)) != null; i++)
-                        {
-                            if (crane != null)
+                        sw.WriteLine($"Parking{separator}{level.Key}");                       
+                            foreach (ITransport crane in level.Value)
                             {
-                                if (crane.GetType().Name == "Crane")
-                                {
-                                    sw.Write($"Crane{separator}");
-                                }
+                                    if (crane.GetType().Name == "Crane")
+                                    {                                        
+                                        sw.Write($"Crane{separator}");
+                                    }
                                 if (crane.GetType().Name == "SuperCrane")
                                 {
-                                    sw.Write($"SuperCrane{separator}");
+                                    sw.Write($"SuperCrne{separator}");
                                 }
-
+                                //Записываемые параметры
                                 sw.WriteLine(crane);
                             }
-                        }
                     }
                 }
             }
-            return true;
         }
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
-
-            string str = "";
-
             using (StreamReader sr = new StreamReader(filename))
             {
-                str = sr.ReadLine();
-
-                if (str.Contains("ParkingCollection"))
+                string line = sr.ReadLine();
+                if (line.Contains("ParkingCollection"))
                 {
+                    //очищаем записи
                     parkingStages.Clear();
                 }
                 else
                 {
-                    return false;
+                    //если нет такой записи, то это не те данные
+                    throw new FormatException("Неверный формат файла");
                 }
-
-                str = sr.ReadLine();
+                line = sr.ReadLine();
                 Vehicle crane = null;
                 string key = string.Empty;
-
-                while (str != null && str.Contains("Parking"))
+                while (line != null && line.Contains("Parking"))
                 {
-                    if (str.Contains("Parking"))
+                    key = line.Split(separator)[1];
+                    parkingStages.Add(key, new Parking<Vehicle>(pictureWidth,
+                   pictureHeight));
+                    line = sr.ReadLine();
+                    while (line != null && (line.Contains("Crane") || line.Contains("SuperCrane")))
                     {
-                        key = str.Split(separator)[1];
-                        parkingStages.Add(key, new Parking<Vehicle>(pictureWidth, pictureHeight));
-                    }
-
-                    str = sr.ReadLine();
-
-                    while (str != null && (str.Contains("Crane") || str.Contains("SuperCrane")))
-                    {
-                        if (str.Split(separator)[0] == "Crane")
+                        if (line.Split(separator)[0] == "Crane")
                         {
-                            crane = new Crane(str.Split(separator)[1]);
+                            crane = new Crane(line.Split(separator)[1]);
                         }
-                        else if (str.Split(separator)[0] == "SuperCrane")
+                        else if (line.Split(separator)[0] == "SuperCrane")
                         {
-                            crane = new SuperCrane(str.Split(separator)[1]);
+                            crane = new SuperCrane(line.Split(separator)[1]);
                         }
-
                         var result = parkingStages[key] + crane;
-
                         if (!result)
                         {
-                            return false;
+                            throw new NullReferenceException();
                         }
-
-                        str = sr.ReadLine();
+                        line = sr.ReadLine();
                     }
                 }
-                return true;
             }
         }
     }
