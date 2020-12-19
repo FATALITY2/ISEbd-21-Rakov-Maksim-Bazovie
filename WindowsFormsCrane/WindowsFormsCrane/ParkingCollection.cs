@@ -88,20 +88,20 @@ namespace WindowsFormsCrane
                     sw.WriteLine($"ParkingCollection");
                     foreach (var level in parkingStages)
                     {
-                        sw.WriteLine($"Parking{separator}{level.Key}");                       
-                            foreach (ITransport crane in level.Value)
+                        sw.WriteLine($"Parking{separator}{level.Key}");
+                        foreach (ITransport crane in level.Value)
+                        {
+                            if (crane.GetType().Name == "Crane")
                             {
-                                    if (crane.GetType().Name == "Crane")
-                                    {                                        
-                                        sw.Write($"Crane{separator}");
-                                    }
-                                if (crane.GetType().Name == "SuperCrane")
-                                {
-                                    sw.Write($"SuperCrne{separator}");
-                                }
-                                //Записываемые параметры
-                                sw.WriteLine(crane);
+                                sw.Write($"Crane{separator}");
                             }
+                            if (crane.GetType().Name == "SuperCrane")
+                            {
+                                sw.Write($"SuperCrane{separator}");
+                            }
+                            //Записываемые параметры
+                            sw.WriteLine(crane);
+                        }
                     }
                 }
             }
