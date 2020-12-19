@@ -8,7 +8,7 @@ namespace WindowsFormsCrane
 {
     class ParkingOverflowException : Exception
     {
-        public ParkingOverflowException() : base("На парковке нет мест ")
+        public ParkingOverflowException() : base("На аэродроме нет мест ")
         { }
     }
 }
